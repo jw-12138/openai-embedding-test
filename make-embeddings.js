@@ -21,10 +21,22 @@ history.forEach((item) => {
 })
 
 console.log('Creating embeddings...')
+let start = Date.now()
 let res = await openai.createEmbedding({
   input: embeddingsInput,
   model: 'text-embedding-ada-002'
 })
+
+let end = Date.now()
+let latency = end - start
+
+if (res.status !== 200) {
+  console.log('Error creating embeddings')
+  console.log(res)
+  process.exit(1)
+}
+
+console.log(`Embeddings created in ${latency} ms.`);
 
 let output = []
 res.data.data.forEach((item, index) => {
@@ -36,12 +48,6 @@ res.data.data.forEach((item, index) => {
 
   output.push(temp)
 })
-
-if (res.status !== 200) {
-  console.log('Error creating embeddings')
-  console.log(res)
-  process.exit(1)
-}
 
 console.log('Writing embeddings to file...')
 fs.writeFileSync('./embeddings.json', JSON.stringify(output))
