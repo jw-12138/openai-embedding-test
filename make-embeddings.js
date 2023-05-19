@@ -18,7 +18,7 @@ history = JSON.parse(history)
 let embeddingsInput = []
 
 history.forEach((item) => {
-  embeddingsInput.push(`${item.sender}: ${item.text}`)
+  embeddingsInput.push(item.text)
 })
 
 console.log('Creating embeddings...')
@@ -30,7 +30,7 @@ let res = await openai.createEmbedding({
 let output = []
 res.data.data.forEach((item, index) => {
   let temp = {
-    text: history[index].text,
+    text: `${history[index].sender}: ${history[index].text}`,
     embedding: item.embedding
   }
 
