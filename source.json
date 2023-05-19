@@ -1,0 +1,92 @@
+[
+  {
+    "sender": "Human",
+    "text": "do you know openai chat api?",
+    "index": 0
+  },
+  {
+    "sender": "AI",
+    "text": "Yes, I am actually a product of OpenAI's language model API. The OpenAI Chat API was a beta product that allowed developers to integrate natural language processing into their applications, but it has since been discontinued. However, OpenAI still offers several other language-related APIs, including the GPT-3 API and the DALL-E API.",
+    "displayMode": "rendered",
+    "bytes": 335,
+    "tokens": 71,
+    "displayText": "<p>Yes, I am actually a product of OpenAI's language model API. The OpenAI Chat API was a beta product that allowed developers to integrate natural language processing into their applications, but it has since been discontinued. However, OpenAI still offers several other language-related APIs, including the GPT-3 API and the DALL-E API.</p>\n",
+    "index": 1,
+    "done": true
+  },
+  {
+    "sender": "Human",
+    "text": "it has a limit of 4096 tokens of context",
+    "index": 2
+  },
+  {
+    "sender": "AI",
+    "text": "Yes, that is correct. The maximum number of tokens that can be passed to the OpenAI GPT-3 API in a single request is currently 4,096 tokens. This means that the API can process up to 4,096 words or characters at a time, depending on how the text is formatted. If you need to process more than 4,096 tokens, you will need to break up your input into smaller chunks and make multiple requests to the API.",
+    "displayMode": "rendered",
+    "bytes": 402,
+    "tokens": 96,
+    "displayText": "<p>Yes, that is correct. The maximum number of tokens that can be passed to the OpenAI GPT-3 API in a single request is currently 4,096 tokens. This means that the API can process up to 4,096 words or characters at a time, depending on how the text is formatted. If you need to process more than 4,096 tokens, you will need to break up your input into smaller chunks and make multiple requests to the API.</p>\n",
+    "index": 3,
+    "done": true
+  },
+  {
+    "sender": "Human",
+    "text": "well that'e one way, i'm wondering if i can do that by creating embeddings of chat history, and then use related chat history to make response, this way we can exceed the limit of 4096 tokens for one chat instance and somewhat cost-effective",
+    "index": 4
+  },
+  {
+    "sender": "AI",
+    "text": "Yes, creating embeddings of chat history and using them to generate responses could be a way to work around the 4096 token limit and make the process more cost-effective. \n\nOne approach you could take is to use an unsupervised learning algorithm such as Word2Vec or Doc2Vec to create embeddings for each message in the chat history. These embeddings can then be used to find the most similar messages to the current message, and use those messages to generate a response.\n\nThere are also pre-trained language models like GPT-3 that can generate responses based on a given prompt or context, which can be used to generate responses based on the chat history embeddings.\n\nHowever, it's important to note that this approach may not always produce the most accurate or relevant responses, as it relies heavily on the quality of the embeddings and similarity metrics used. Additionally, generating embeddings for large amounts of text can also be computationally expensive.",
+    "displayMode": "rendered",
+    "bytes": 968,
+    "tokens": 205,
+    "displayText": "<p>Yes, creating embeddings of chat history and using them to generate responses could be a way to work around the 4096 token limit and make the process more cost-effective.</p>\n<p>One approach you could take is to use an unsupervised learning algorithm such as Word2Vec or Doc2Vec to create embeddings for each message in the chat history. These embeddings can then be used to find the most similar messages to the current message, and use those messages to generate a response.</p>\n<p>There are also pre-trained language models like GPT-3 that can generate responses based on a given prompt or context, which can be used to generate responses based on the chat history embeddings.</p>\n<p>However, it's important to note that this approach may not always produce the most accurate or relevant responses, as it relies heavily on the quality of the embeddings and similarity metrics used. Additionally, generating embeddings for large amounts of text can also be computationally expensive.</p>\n",
+    "index": 5,
+    "done": true
+  },
+  {
+    "sender": "Human",
+    "text": "yes, i know, ah a little update, openAI has its own embedding api, which supports up to 8191 tokens per request, and it's cheap, around $0.0004 per 1k token, we can extract 10 most relative chat history and make response up on that, and the chat history can go unlimited",
+    "index": 6
+  },
+  {
+    "sender": "AI",
+    "text": "That's great to hear! Using OpenAI's embedding API can definitely help you work around the token limit and make the process more cost-effective. \n\nAs you mentioned, you can extract the 10 most relevant chat history messages using the embeddings and use them to generate a response. This approach can potentially lead to more accurate and relevant responses, as it takes into account a larger context of the conversation.\n\nAdditionally, since the chat history can go unlimited, you can continuously update and improve the embeddings to further refine the accuracy of the responses.\n\nOverall, this approach has a lot of potential and can be a great way to generate high-quality responses in a cost-effective manner.",
+    "displayMode": "rendered",
+    "bytes": 713,
+    "tokens": 146,
+    "displayText": "<p>That's great to hear! Using OpenAI's embedding API can definitely help you work around the token limit and make the process more cost-effective.</p>\n<p>As you mentioned, you can extract the 10 most relevant chat history messages using the embeddings and use them to generate a response. This approach can potentially lead to more accurate and relevant responses, as it takes into account a larger context of the conversation.</p>\n<p>Additionally, since the chat history can go unlimited, you can continuously update and improve the embeddings to further refine the accuracy of the responses.</p>\n<p>Overall, this approach has a lot of potential and can be a great way to generate high-quality responses in a cost-effective manner.</p>\n",
+    "index": 7,
+    "done": true
+  },
+  {
+    "sender": "Human",
+    "text": "i think we can still make a limit for this new method, the more history we have, the slower the embeddings are, i think 10k tokens are enough for most cases",
+    "index": 8
+  },
+  {
+    "sender": "AI",
+    "text": "Yes, that's a good point. While using embeddings to generate responses can be more efficient than passing in the entire chat history, there is still a limit to how much chat history can be processed in a single request before the performance starts to degrade.\n\nSetting a limit of 10,000 tokens per request can help balance the trade-off between accuracy and efficiency. This will allow you to process a larger context while still maintaining a reasonable response time.\n\nHowever, it's important to note that the optimal limit may vary depending on factors such as the complexity of the conversation and the resources available for processing. So, it's a good idea to experiment with different limits and evaluate the performance to find the sweet spot that works best for your use case.",
+    "displayMode": "rendered",
+    "bytes": 787,
+    "tokens": 154,
+    "displayText": "<p>Yes, that's a good point. While using embeddings to generate responses can be more efficient than passing in the entire chat history, there is still a limit to how much chat history can be processed in a single request before the performance starts to degrade.</p>\n<p>Setting a limit of 10,000 tokens per request can help balance the trade-off between accuracy and efficiency. This will allow you to process a larger context while still maintaining a reasonable response time.</p>\n<p>However, it's important to note that the optimal limit may vary depending on factors such as the complexity of the conversation and the resources available for processing. So, it's a good idea to experiment with different limits and evaluate the performance to find the sweet spot that works best for your use case.</p>\n",
+    "index": 9,
+    "done": true
+  },
+  {
+    "sender": "Human",
+    "text": "yes you're right, imma go coding now, thank you!",
+    "index": 10
+  },
+  {
+    "sender": "AI",
+    "text": "You're welcome! Good luck with your coding, and feel free to reach out if you have any more questions in the future. Have a great day!",
+    "displayMode": "rendered",
+    "bytes": 134,
+    "tokens": 31,
+    "displayText": "<p>You're welcome! Good luck with your coding, and feel free to reach out if you have any more questions in the future. Have a great day!</p>\n",
+    "index": 11,
+    "done": true
+  }
+]
