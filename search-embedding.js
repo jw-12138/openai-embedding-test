@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as dotenv from 'dotenv'
-import {Configuration, OpenAIApi} from 'openai'
+import { Configuration, OpenAIApi } from 'openai'
 
 dotenv.config()
 
@@ -9,7 +9,7 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-let userQuestion = 'What is embeddings in AI?'
+let userQuestion = 'What am i trying to do?'
 
 console.log('Reading embeddings file...')
 let embeddings = fs.readFileSync('./embeddings.json', 'utf8')
@@ -30,9 +30,10 @@ const findClosestResults = (questionEmbedding, count) => {
   console.log('Finding closest results...')
   let items = []
 
-  embeddings.forEach((item) => {
+  embeddings.forEach((item, index) => {
     items.push({
       text: item.text,
+      index: index,
       score: compareEmbeddings(questionEmbedding, item.embedding)
     })
   })
@@ -41,7 +42,15 @@ const findClosestResults = (questionEmbedding, count) => {
     return b.score - a.score
   })
 
-  return items.slice(0, count).map((item) => item.text)
+  let highScoreItems = items.slice(0, count)
+
+  highScoreItems = highScoreItems.sort(function (a, b) {
+    return a.index - b.index
+  })
+
+  highScoreItems = highScoreItems.map((item) => item.text)
+
+  return highScoreItems
 }
 
 console.log('Creating user question embedding...')
@@ -50,7 +59,7 @@ let userEmbedding = await openai.createEmbedding({
   model: 'text-embedding-ada-002'
 })
 
-if(userEmbedding.status !== 200){
+if (userEmbedding.status !== 200) {
   console.log('Error creating user embedding')
   console.log(userEmbedding)
   process.exit(1)
@@ -58,6 +67,6 @@ if(userEmbedding.status !== 200){
 
 let userEmbeddingVector = userEmbedding.data.data[0].embedding
 
-let closestResults = findClosestResults(userEmbeddingVector, 3)
+let closestResults = findClosestResults(userEmbeddingVector, 5)
 
-console.log('Closest results:', closestResults)
+console.log('results:', closestResults.join('\n\n'))

@@ -1,5 +1,4 @@
 import * as dotenv from 'dotenv'
-import axios from 'axios'
 import fs from 'fs'
 import {Configuration, OpenAIApi} from 'openai'
 
@@ -31,6 +30,7 @@ let output = []
 res.data.data.forEach((item, index) => {
   let temp = {
     text: `${history[index].sender}: ${history[index].text}`,
+    index: index,
     embedding: item.embedding
   }
 
